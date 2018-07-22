@@ -65,6 +65,29 @@ namespace BankUnit.Tests
             Assert.That(result, Is.EqualTo("This account can not withdraw funds over $1000 at a time."));
         }
 
+        [Test]
+        public void AttemptToOverdraftAccount()
+        {
+            string result = test.WithdrawFunds(1000000, 6);
+            Assert.That(result, Is.EqualTo("Not enough funds in account."));
+        }
+
+        [Test]
+        public void NonExistantAccount()
+        {
+            string result = test.WithdrawFunds(200, 100);
+            Assert.That(result, Is.EqualTo("Account does not exist."));
+        }
+
+        [Test]
+        public void AllAccountsHaveOwners()
+        {
+            //Not possible.  Due to design of db, account owner id is a non-nullable, foreign key, integer field.
+            //This is present for requirements testing only.
+            List<AccountDetail> accounts = test.GetAllAccounts().Where(x => x.AcctOwnerID < 1).ToList() ;
+            Assert.That(accounts, Is.Empty);
+        }
+
         [OneTimeTearDown]
         public void TossOut()
         {

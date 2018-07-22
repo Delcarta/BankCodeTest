@@ -46,6 +46,16 @@ namespace BankGrab
             }
         }
 
+        public List<AccountDetail> GetAllAccounts()
+        {
+            using (var db = new BankContext())
+            {
+                var fetch = from details in db.AccountDetails
+                            select details;
+
+                return fetch.ToList();
+            }
+        }
 
 
         public string TransferFunds(decimal Amount, int SourceAccount, int DestinationAccount)
