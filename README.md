@@ -1,6 +1,6 @@
 # BankCodeTest
 
-Sample code project that i originally did ask an interview test.
+Sample code project that i originally did as an interview test.
 
 The original requirements are as follows:
 
@@ -13,3 +13,5 @@ Requirements
 •         It is not permissible to overdraft an account
 
 These requirements were to be verified via unit tests.
+
+This project is an example of C#, Entity Framework, Linq(Both method and query syntax), TDD principles, and Nunit.
